@@ -1,0 +1,292 @@
+/* BookingFlow.module.scss */
+
+.bookingWrapper {
+  max-width: 750px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Dynamic Step Progress Line indicator */
+.progressContainer {
+  width: 100%;
+  height: 4px;
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+
+  .progressBar {
+    height: 100%;
+    background-color: #0052cc; // Brand Blue
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.step1 {
+      width: 25%;
+    }
+    &.step2 {
+      width: 50%;
+    }
+    &.step3 {
+      width: 75%;
+    }
+    &.step4 {
+      width: 100%;
+    }
+  }
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  padding: 3.5rem 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+}
+
+.stepContent {
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+}
+/* ==========================================================================
+   The Paywall-Bypassing Embedded Calendar Wrapper 
+   ========================================================================== */
+.calendarContainer {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  margin-top: 2rem;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  overflow: hidden;
+  /* Forces a strict stacking context for all nested child components */
+  isolation: isolate;
+}
+
+/* This is the magic wrapper that blocks the user's cursor from tampering with the data */
+.shieldOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  /* 1. Fine-tune this height to cover exactly questions 3 through 7 at the bottom */
+  height: 310px;
+
+  /* 2. Using a completely invisible alpha background forces the browser to intercept clicks */
+  background-color: rgba(255, 255, 255, 0);
+
+  /* 3. Rocket this above the iframe window context completely */
+  z-index: 99999;
+
+  /* 4. Forces the element to consume and kill mouse inputs */
+  pointer-events: auto;
+
+  /* 5. Optional Visual Cue: Show clients a locked-down cursor when hovering over frozen choices */
+  cursor: not-allowed;
+}
+/* Custom Interactive Box Selections Grid */
+.optionsGrid {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.optionBtn {
+  flex: 1;
+  background: #ffffff;
+  border: 2px solid #eaeaea;
+  border-radius: 6px;
+  padding: 2.5rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+
+  .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &:hover {
+    border-color: #bbb;
+    transform: translateY(-2px);
+  }
+
+  &.active {
+    border-color: #0052cc;
+    background-color: rgba(0, 82, 204, 0.01);
+    box-shadow: 0 4px 20px rgba(0, 82, 204, 0.05);
+  }
+}
+
+/* Custom Selection Form Controls */
+.formGroup {
+  margin-bottom: 2rem;
+
+  label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.75rem;
+  }
+
+  select {
+    width: 100%;
+    padding: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    border: 2px solid #eaeaea;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #0052cc;
+    }
+  }
+}
+
+/* Navigation System Controls */
+.navButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+.backBtn {
+  background: transparent;
+  border: 2px solid #111;
+  color: #111;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #111;
+    color: #fff;
+  }
+}
+
+.nextBtn {
+  background: #0052cc;
+  border: none;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  padding: 0.85rem 2.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    background: #0043a4;
+  }
+}
+
+/* Premium Bill Breakdown Box Visual Layout */
+.receiptBox {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  .receiptLine {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+
+    strong {
+      color: #111;
+    }
+  }
+
+  .dividerLine {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 1.5rem 0;
+  }
+
+  .totalLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #111;
+
+    .priceTag {
+      font-size: 1.6rem;
+      color: #0052cc;
+      font-weight: 800;
+    }
+  }
+}
+
+.calendlySubmitBtn {
+  display: inline-block;
+  background-color: #0052cc;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.85rem 2.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.1s;
+  text-align: center;
+
+  &:hover {
+    background-color: #0043a4;
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 600px) {
+  .optionsGrid {
+    flex-direction: column;
+  }
+  .card {
+    padding: 2rem 1.5rem;
+  }
+}

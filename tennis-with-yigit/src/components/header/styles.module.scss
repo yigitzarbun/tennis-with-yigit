@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Premium Navigation Layer Styles
+   ========================================================================== */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1.25rem 1.5rem; /* Slightly sleeker vertical padding */
+  transition: all 0.3s ease;
+}
+
+.inner {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 1.35rem;
+    font-weight: 800; /* Extra bold for premium sporting feel */
+    color: #010206;
+    text-decoration: none;
+    letter-spacing: -0.03em; /* Aggressive tracking for brand aesthetic */
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: opacity 0.25s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    /* Elegant, scale-invariant pseudo dot */
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: #0052cc; /* Clean Brand Blue */
+      border-radius: 50%;
+      margin-top: 0.2rem; /* Visually aligns with lowercase typography base */
+    }
+  }
+}
+
+/* HAMBURGER TRIGGER UTILITIES */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #010206;
+  padding: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.92);
+  }
+
+  @media (max-width: 1000px) {
+    display: flex;
+  }
+}
+
+/* LINKS REFACTORED WORKFLOW */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* Cleaner breathing room on desktop */
+
+  .link {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600; /* Medium-high weighting */
+    color: #555555; /* Sophisticated charcoal */
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: #010206;
+    }
+
+    /* Animated under-bar accent indicator for modern sleek feel */
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #0052cc;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Active state rules */
+    &.active {
+      color: #0052cc !important;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  /* Buttery Smooth Dropdown Panel on Mobile Viewports */
+  @media (max-width: 1000px) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 2rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+
+    /* Animation Initialization Properties */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.25s;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .link {
+      width: 100%;
+      font-size: 1.15rem;
+      padding: 0.25rem 0;
+
+      &::after {
+        display: none; /* Strip lines on mobile dropdown for simpler stack look */
+      }
+
+      &.active {
+        color: #0052cc !important;
+        border-left: 3px solid #0052cc;
+        padding-left: 0.75rem;
+      }
+    }
+  }
+}

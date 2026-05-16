@@ -1,0 +1,165 @@
+/* styles.module.scss */
+
+/* Global safety */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.introWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem; /* Increased gap slightly for cleaner desktop framing */
+
+  .texts {
+    display: flex;
+    flex-direction: column;
+    flex: 1.2; /* FIX 1: Gives the text a bit more weight on desktop layouts */
+    min-width: 0;
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: #111;
+      letter-spacing: -0.02em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      button {
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        font-size: 1.05rem;
+        padding: 0.85rem 2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &.primary {
+          background-color: #0052cc;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: #0043a4;
+            transform: translateY(-2px);
+          }
+          &:active {
+            transform: translateY(0);
+          }
+        }
+
+        &.secondary {
+          background-color: transparent;
+          color: #111;
+          border: 2px solid #111;
+
+          &:hover {
+            background-color: #111;
+            color: white;
+            transform: translateY(-2px);
+          }
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+
+  .image-container {
+    flex: 0.8; /* FIX 2: Restricts the image from stealing 50% width on small desktops/tablets */
+    min-width: 0;
+    /* FIX 3: Reduced max desktop clamp bounds from 600px to 500px to control vertical blowup */
+    height: clamp(320px, 50vh, 500px);
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+  }
+}
+
+/* ==========================================================================
+   Tablet & Mobile Breakpoints (Synced at 1000px)
+   ========================================================================== */
+@media (max-width: 1000px) {
+  .introWrapper {
+    padding: 3rem 1.5rem;
+  }
+
+  .intro {
+    flex-direction: column;
+    gap: 2.5rem;
+
+    .image-container {
+      width: 50vw;
+      /* FIX 4: Constrained tablet/phone height bounds so portrait images stay clean */
+      height: clamp(200px, 35vh, 320px);
+
+      .image {
+        object-position: center;
+      }
+    }
+
+    .texts {
+      width: 100%;
+      text-align: center;
+      align-items: center;
+
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+        margin-bottom: 1.75rem;
+      }
+
+      .buttons {
+        width: 100%;
+        justify-content: center;
+
+        @media (max-width: 480px) {
+          flex-direction: column;
+          width: 100%;
+
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

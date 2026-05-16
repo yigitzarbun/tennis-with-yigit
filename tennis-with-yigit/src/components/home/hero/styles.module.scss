@@ -1,0 +1,21 @@
+/* HeroSection.module.scss */
+
+.hero {
+  width: 100%;
+  height: 25vh;
+  overflow: hidden;
+  display: block; /* Visible by default on desktop layout configurations */
+
+  /* Media query targets screens 1000px wide or smaller (Tablets & Mobile) */
+  @media (max-width: 1000px) {
+    display: none !important; /* Forces the entire section container to vanish */
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}

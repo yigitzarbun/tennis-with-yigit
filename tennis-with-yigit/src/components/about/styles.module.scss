@@ -1,0 +1,354 @@
+/* ==========================================================================
+   About Me Page Layout Architecture
+   ========================================================================== */
+
+/* Global Reset Safety Protection */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.pageWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Section 1: Hero & Bio Split
+   -------------------------------------------------------------------------- */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem; /* Generous separation channel between text and canvas portrait */
+  margin-bottom: 6rem;
+
+  .text {
+    flex: 1.2; /* Allocates optimal horizontal space to long editorial strings */
+    min-width: 0;
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+      color: #010206;
+      letter-spacing: -0.03em;
+    }
+
+    /* Paragraph Spacing Fix: Elegant breathing room between text walls */
+    p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #444444;
+      margin: 0 0 1.5rem 0; /* Clear bottom margins prevent line collision */
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    /* Section Subheadings Fix */
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #010206;
+      margin: 3rem 0 1.25rem 0; /* Creates prominent separation fields */
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    /* Premium List Reset & Formatting Layout */
+    ul {
+      list-style: none; /* Strip out basic browser points */
+      padding: 0;
+      margin: 1.5rem 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem; /* Clean distance gap between cards */
+
+      li {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        color: #444444;
+        position: relative;
+        padding-left: 1.75rem; /* Offsets text layout to receive customized bullet */
+
+        /* Premium custom list item indicator */
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 0.25rem;
+          top: -0.05rem;
+          color: #0052cc; /* Signature brand blue token */
+          font-size: 1.5rem;
+          line-height: 1;
+        }
+      }
+    }
+  }
+
+  .image-container {
+    flex: 0.8; /* Restricts profile frame size to prevent content blowup */
+    min-width: 0;
+    height: clamp(350px, 55vh, 520px);
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.04);
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section 2: 3-Card Value Grid
+   -------------------------------------------------------------------------- */
+.gridSection {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 6rem;
+
+  .card {
+    flex: 1;
+    background: #ffffff;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eaeaea;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0;
+      color: #010206;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #555555;
+      margin: 0;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section 3: Target Audience Block
+   -------------------------------------------------------------------------- */
+.audienceSection {
+  background-color: #f9f9f9;
+  padding: 4.5rem 3.5rem;
+  border-radius: 16px;
+  margin-bottom: 6rem;
+  border: 1px solid #eaeaea;
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 3.5rem 0;
+    color: #010206;
+    letter-spacing: -0.02em;
+  }
+
+  .audienceGrid {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .audienceBlock {
+    flex: 1;
+    min-width: 0;
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #010206;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 0;
+        width: 25px;
+        height: 3px;
+        background-color: #0052cc;
+      }
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #555555;
+      margin: 0;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section 4: Call to Action Banner
+   -------------------------------------------------------------------------- */
+.ctaBanner {
+  background: #111111;
+  color: #ffffff;
+  padding: 5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1.15rem;
+    margin: 0 0 2.5rem 0;
+    color: #aaaaaa;
+    max-width: 550px;
+    line-height: 1.5;
+  }
+
+  .ctaButton {
+    background-color: #0052cc;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:hover {
+      background-color: #0043a4;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+/* ==========================================================================
+   Responsive Structural Breakpoints (Synced at 1000px Framework Limits)
+   ========================================================================== */
+@media (max-width: 1000px) {
+  .pageWrapper {
+    padding: 2rem 1.25rem;
+  }
+
+  /* Section 1 Mobile Layout Refactor */
+  .container {
+    flex-direction: column; /* Normal layout stacking pushes image to the top */
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+
+    .image-container {
+      width: 50%;
+      height: clamp(
+        240px,
+        40vh,
+        340px
+      ); /* Restrained portrait crop boundaries */
+      order: -1; /* Forces the image block above the profile text lines */
+      margin: 0 auto; /* Centers the image block within the new column layout */
+    }
+
+    .text {
+      width: 100%;
+      text-align: left; /* Editorial alignment remains cleanly left-justified */
+
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 1.25rem;
+      }
+
+      h4 {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+
+  /* Section 2 Multi-Card Collapse */
+  .gridSection {
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+
+    .card {
+      width: 100%;
+      padding: 2.25rem 1.75rem;
+    }
+  }
+
+  /* Section 3 Group Layout Collapse */
+  .audienceSection {
+    padding: 3rem 1.75rem;
+    margin-bottom: 4rem;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .audienceGrid {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .audienceBlock h4::before {
+      top: -8px;
+    }
+  }
+
+  /* Section 4 Banner Layout Step Down */
+  .ctaBanner {
+    padding: 4rem 1.5rem;
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .ctaButton {
+      width: 100%; /* Easy to tap on mobile touch screens */
+      text-align: center;
+    }
+  }
+}
