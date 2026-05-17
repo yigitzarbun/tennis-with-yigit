@@ -12,8 +12,9 @@ const Intro = () => {
       <div className={styles.intro}>
         <div className={styles.texts}>
           <h1>
-            Elevate Your Game <br />
-            On and Off the Court
+            Elevate Your Tennis 🎾
+            <br />
+            <span>Coaching & Hitting Partner</span>
           </h1>
           <p>
             Hi, I'm Yigit. After a lifetime of competitive performance tennis
@@ -36,7 +37,6 @@ const Intro = () => {
             >
               Get in Touch
             </button>{" "}
-            {/* Fixed: Added className to map to SCSS */}
           </div>
         </div>
         <div className={styles["image-container"]}>
